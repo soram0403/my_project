@@ -54,6 +54,12 @@ public class RoomDAO extends DAO {
 		List<Room> list = new ArrayList<>();
 		Room room = null;
 
+//		ROOM_NUMBER NOT NULL NUMBER       
+//		ROOM_STATE           NUMBER       
+//		MEMBER_ID            VARCHAR2(20) 
+//		CAT_NAME             VARCHAR2(10) 
+//		ROOM_DATE            VARCHAR2(20) 
+//		MEMBER_NAME          VARCHAR2(20) 
 		try { 
 			conn();
 			String sql = "select room_number, room_state, room_date, member_name from room where member_id=? ";
