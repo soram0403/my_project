@@ -13,6 +13,9 @@ public class CatMember {
 //	MEMBER_ADDR          VARCHAR2(100) 
 //	ROLE                 CHAR(1)       
 //	DATES                DATE
+	// room_number		 number
+//	CAT_CHARACTER NOT NULL VARCHAR2(30)  
+//	SPECIAL_NOTE           VARCHAR2(100) 
 	
 	private String memberId;
 	private String memberPw;
@@ -22,4 +25,7 @@ public class CatMember {
 	private String catName;
 	private String role;
 	private String dates;
+	private int roomNumber;
+	private String catCharacter;
+	private String specialNote;
 }

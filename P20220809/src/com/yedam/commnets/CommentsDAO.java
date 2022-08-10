@@ -1,5 +1,8 @@
 package com.yedam.commnets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.yedam.common.DAO;
 
 public class CommentsDAO extends DAO{
@@ -76,7 +79,33 @@ public class CommentsDAO extends DAO{
 		}finally {
 			disconnect();
 		}
-		
 		return result;
 	}
+	
+	// 후기 조회 member_id , comments
+		public List<Comments> getCommentsInfo() {
+			List<Comments> list = new ArrayList<>();
+			Comments comments = null;
+			try {
+				conn();
+				String sql = "select * from comments";
+				stmt = conn.createStatement();
+				
+				rs = stmt.executeQuery(sql);
+				
+				while(rs.next()) {
+					comments = new Comments();
+					comments.setMemberId(rs.getString("member_id"));
+					comments.setComments(rs.getString("comments"));
+					
+					list.add(comments);
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				disconnect();
+			}
+			return list;
+		}
 }

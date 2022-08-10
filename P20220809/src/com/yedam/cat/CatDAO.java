@@ -32,17 +32,16 @@ public class CatDAO extends DAO {
 		}
 		return result;
 	}
-
+	
 	// 수정
 	public int updateCat(Cat cat) {
 		int result = 0;
 		try {
 			conn();
-			String sql = "update cat set special_note = ? ,states = ? where member_id = ?";
+			String sql = "update cat set special_note = ? where member_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, cat.getSpecialNote());
-			pstmt.setString(2, cat.getStates());
-			pstmt.setString(3, cat.getMemberId());
+			pstmt.setString(2, cat.getMemberId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -60,7 +59,7 @@ public class CatDAO extends DAO {
 		int result = 0;
 		try {
 			conn();
-			String sql = "delete cat where member_id = ?";
+			String sql = "delete from cat where member_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			

@@ -1,5 +1,6 @@
 package com.yedam.commnets;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CommentsService {
@@ -66,6 +67,17 @@ public class CommentsService {
 		} else {
 			System.out.println("후기 삭제 실패");
 		}
-	
 	}
+	
+	// 후기 조회
+	public void getCommentInfo() {
+		List<Comments> list = CommentsDAO.getInstance().getCommentsInfo();
+		
+		for(Comments comments : list) {
+			System.out.println("회원 ID : " + comments.getMemberId());
+			System.out.println("후기 : " + comments.getComments());
+		}
+		
+	}
+	
 }

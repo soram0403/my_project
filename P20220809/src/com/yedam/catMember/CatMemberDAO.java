@@ -58,10 +58,15 @@ public class CatMemberDAO extends DAO {
 		
 		try {
 			conn();
-			String sql = "select m.member_id member_id, c.cat_name cat_name, m.member_name member_name, m.dates dates from catmember m join cat c on m.member_id = c.member_id";
+			String sql = "select m.member_id member_id, c.cat_name cat_name, m.member_name member_name,\r\n"
+					+ "to_char(m.dates, 'YYYY/MM/DD') dates from catmember m join cat c on m.member_id = c.member_id\r\n"
+					+ "where m.role = 1";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
+				catmember = new CatMember();
+				
 				catmember.setMemberId(rs.getString("member_id"));
 				catmember.setMemberName(rs.getString("member_name"));
 				catmember.setCatName(rs.getString("cat_name"));
@@ -78,21 +83,32 @@ public class CatMemberDAO extends DAO {
 		return list;
 	}
 	
-	// 회원(1명) 상세 조회 // id, 이름, 고양이이름, 고양이성격, 특이사항, 방 번호
-	public List<CatMember> getDetailCatMember(String memberId) {
+	// 회원(1명) 상세 조회 // id, 이름, 번호, 고양이이름, 고양이성격, 특이사항, 방 번호
+	public List<CatMember> getDetailCatMember(String id) {
 		List<CatMember> list = new ArrayList<>();
 		CatMember catmember = null;
 		
 		try {
 			conn();
-			String sql = "select * from catmember";
+			String sql ="select m.member_id member_id, m.member_name member_name, m.cat_name cat_name,"
+					+ "m.member_tel member_tel, c.cat_character cat_character, c.special_note special_note\r\n"
+					+ "from catmember m, cat c\r\n"
+					+ "where c.member_id = m.member_id and m.role = 1 and m.member_id= ?";
+	
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+						
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()) {
+				catmember = new CatMember();
+				
 				catmember.setMemberId(rs.getString("member_id"));
 				catmember.setMemberName(rs.getString("member_name"));
 				catmember.setCatName(rs.getString("cat_name"));
-				catmember.setDates(rs.getString("dates"));
+				catmember.setMemberTel(rs.getString("member_tel"));
+				catmember.setCatCharacter(rs.getString("cat_character"));
+				catmember.setSpecialNote(rs.getString("special_note"));
 				
 				list.add(catmember);
 			}
@@ -110,15 +126,25 @@ public class CatMemberDAO extends DAO {
 		int result = 0;
 		try {
 			conn();
-			String sql = "insert into catmember (member_id,member_pw,member_name,member_tel,member_addr) values(?,?,?,?,?)";
+			String sql = "insert into catmember (member_id,member_pw,member_name,member_tel,member_addr,cat_name) values(?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, catMember.getMemberId());
 			pstmt.setString(2, catMember.getMemberPw());
 			pstmt.setString(3, catMember.getMemberName());
 			pstmt.setString(4, catMember.getMemberTel());
 			pstmt.setString(5, catMember.getMemberAddr());
+			pstmt.setString(6, catMember.getCatName());
 
 			result = pstmt.executeUpdate();
+			if(result == 1) {
+				String sql2 = "insert into cat (member_id, cat_name, cat_character) values(?,?,?)";
+				pstmt = conn.prepareStatement(sql2);
+
+				pstmt.setString(1, catMember.getMemberId());
+				pstmt.setString(2, catMember.getCatName());
+				pstmt.setString(3, catMember.getCatCharacter());
+				result = pstmt.executeUpdate();
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,41 +154,37 @@ public class CatMemberDAO extends DAO {
 
 		return result;
 	}
-	// 회원 수정
-	// number == 1 연락처 수정 | 2 주소 수정 | 3 상태 수정
-	public int updateMember(CatMember catmember, int number) {
+	// 회원 수정 
+	//연락처 수정  
+	public int updateTel(CatMember catmember) {
 		int result = 0;
 		try {
 			conn();
-			
-			String sql = "select member_id from catmember";
+			String sql = "update catmember set member_tel = ? where member_id =?";
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+			pstmt.setString(1, catmember.getMemberTel());
+			pstmt.setString(2, catmember.getMemberId());
 			
-			if(number == 1) {
-				String sql2 = "update member_tel = ? from catmember where member_id =?";
-				pstmt = conn.prepareStatement(sql2);
-				pstmt.setString(1, rs.getString("member_tel"));
-				pstmt.setString(2, rs.getString("member_id"));
-				
-				result = pstmt.executeUpdate();
-			} else if (number == 2) {
-				String sql3 = "update member_addr = ? from catmember where member_id =?";
-				pstmt = conn.prepareStatement(sql3);
-				pstmt.setString(1, rs.getString("member_addr"));
-				pstmt.setString(2, rs.getString("member_id"));
-
-				result = pstmt.executeUpdate();
-						
-			} else if (number == 3) {
-				String sql4 = "update states = ? from catmember where member_id =?";
-				pstmt = conn.prepareStatement(sql4);
-				pstmt.setString(1, rs.getString("states"));
-				pstmt.setString(2, rs.getString("member_id"));
-
-				result = pstmt.executeUpdate();
-			}
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		return result;
+	}
+	
+	// 주소 수정 
+	public int updateAddr(CatMember catmember) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "update catmember set member_addr = ? where member_id =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, catmember.getMemberAddr());
+			pstmt.setString(2, catmember.getMemberId());
 			
+			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
