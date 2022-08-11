@@ -144,9 +144,9 @@ public class CatMemberService {
 	public void updateMember() {
 		CatMember catmember = new CatMember();
 		System.out.println();
-		System.out.println("┏━━━━━━━━━━━━━━━━━━━━━┓");
-		System.out.println(" 1.연락처 수정 | 2.주소 수정 ");
-		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
+		System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓");
+		System.out.println(" 1.연락처 수정 | 2.주소 수정" );
+		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
 		System.out.println();
 		System.out.print(" 메뉴 선택>");
 
@@ -201,6 +201,9 @@ public class CatMemberService {
 				System.out.println();
 			}
 
+		}else if (number == 3) {
+			
+			
 		}
 	}
 
@@ -230,13 +233,14 @@ public class CatMemberService {
 		System.out.println("                               ◆회원정보◆");
 		for (CatMember catmember : list) {
 			// (주인id, 주인이름, 고양이이름, 가입일)
-			System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+			System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
 			System.out.print("  ▶ ID : " + catmember.getMemberId());
 			System.out.print(" , 이름 : " + catmember.getMemberName());
 			System.out.print(" , 고양이 이름 : " + catmember.getCatName());
 			System.out.print(" , 가입일 : " + catmember.getDates());
+			System.out.print(" , 포인트 : " + catmember.getPoints());
 			System.out.println();
-			System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+			System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 			System.out.println();
 
 		}
@@ -280,14 +284,32 @@ public class CatMemberService {
 	// 요금표 조회
 	public void showPrice() {
 		System.out.println();
-		System.out.println("┏━━━━━━━━━━━━━ 요금표 ━━━━━━━━━━━━━┓");
+		System.out.println("┏━━━━━━━━━━━━━━━━━━━━ 요금표 ━━━━━━━━━━━━━━━━━━━━┓");
 		System.out.println("    ▶ 1일 : 50,000원                ");
 		System.out.println("    ▶ 3일 : 120,000원              ");
 		System.out.println("    ▶ 7일 : 300,000원              ");
-		System.out.println("    ▶ 1달이상(장기) : 1,200,000원     ");
-		System.out.println("        ※※선불제 입니다.※※         ");
-		System.out.println("    ※※최대 3개월까지 가능합니다.※※    ");
-		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+		System.out.println("    ▶ 1개월(30일) : 1,200,000원     ");
+		System.out.println("            ※※선불제 입니다.※※         ");
+		System.out.println("         ※※1개월은 30일입니다..※※         ");
+		System.out.println("   ※※1개월 넘어서부터는 개월수로 결제 가능합니다..※※         ");
+		System.out.println("        ※※최대 6개월까지 가능합니다.※※    ");
+		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+		System.out.println();
+	}
+	
+	
+	public void showSalePrice() {
+		System.out.println();
+		System.out.println("┏━━━━━━━━━━━ 멤버십 요금표 (20% 할인) ━━━━━━━━━━━┓");
+		System.out.println("    ▶ 1일 : 40,000원                ");
+		System.out.println("    ▶ 3일 : 960,000원              ");
+		System.out.println("    ▶ 7일 : 240,000원              ");
+		System.out.println("    ▶ 1개월(30일) : 960,000원     ");
+		System.out.println("            ※※선불제 입니다.※※         ");
+		System.out.println("         ※※1개월은 30일입니다..※※         ");
+		System.out.println("   ※※1개월 넘어서부터는 개월수로 결제 가능합니다..※※         ");
+		System.out.println("        ※※최대 6개월까지 가능합니다.※※    ");
+		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 		System.out.println();
 	}
 

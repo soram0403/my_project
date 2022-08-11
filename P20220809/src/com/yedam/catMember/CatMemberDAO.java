@@ -60,7 +60,7 @@ public class CatMemberDAO extends DAO {
 		try {
 			conn();
 			String sql = "select m.member_id member_id, c.cat_name cat_name, m.member_name member_name,\r\n"
-					+ "to_char(m.dates, 'YYYY\"년\" MM\"월\" DD\"일\"') dates from catmember m join cat c on m.member_id = c.member_id\r\n"
+					+ "to_char(m.dates, 'YYYY\"년\" MM\"월\" DD\"일\"') dates, m.points points from catmember m join cat c on m.member_id = c.member_id\r\n"
 					+ "where m.role = 1"
 					+ "order by m.member_id";
 			pstmt = conn.prepareStatement(sql);
@@ -73,6 +73,7 @@ public class CatMemberDAO extends DAO {
 				catmember.setMemberName(rs.getString("member_name"));
 				catmember.setCatName(rs.getString("cat_name"));
 				catmember.setDates(rs.getString("dates"));
+				catmember.setPoints(rs.getInt("points"));
 				
 				list.add(catmember);
 			}
@@ -197,6 +198,24 @@ public class CatMemberDAO extends DAO {
 		return result;
 	}
 	
+	// 포인트 수정 
+	public int updatepoints(CatMember catmember) {
+		int result = 0;
+		try {
+			conn();
+			String sql = "update catmember set points = points + ? where member_id =?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, catmember.getPoints());
+			pstmt.setString(2, catmember.getMemberId());
+			
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disconnect();
+		}
+		return result;
+	}
 	// 회원 삭제
 	public int deleteMember(String memberId) {
 		int result = 0;

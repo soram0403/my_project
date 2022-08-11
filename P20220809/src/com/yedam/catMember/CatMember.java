@@ -25,11 +25,8 @@ public class CatMember {
 	private String catName;
 	private String role;
 	private String dates;
-<<<<<<< HEAD
-
-=======
 	private int roomNumber;
 	private String catCharacter;
 	private String specialNote;
->>>>>>> branch 'main' of https://github.com/soram0403/project.git
+	private int points;
 }

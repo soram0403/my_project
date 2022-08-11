@@ -11,7 +11,7 @@ public class Room {
 //	ROOM_STATE           NUMBER       
 //	MEMBER_ID            VARCHAR2(20) 
 //	CAT_NAME             VARCHAR2(10) 
-//	ROOM_DATE   		 VARCHAR2(20) 
+//	ROOM_DATE   		 NUMBER 
 //	MEMBER_NAME          VARCHAR2(20)
 	
 	private int roomNumber;
@@ -19,6 +19,6 @@ public class Room {
 	private String memberId;
 	private String memberName;
 	private String catName;
-	private String roomDate;
+	private int roomDate;
 	
 }
