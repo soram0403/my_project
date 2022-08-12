@@ -142,25 +142,20 @@ public class RoomDAO extends DAO {
 		Room room = null;
 		try {
 			conn();
-			String sql = "select room_date from room where room_number = ?"; 
+			String sql = "select r.room_date room_date, m.member_id member_id, m.points points from room r join catmember m on m.member_id = r.member_id where r.room_number = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, roomNo);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				String sql2 = "update catmember set points = points-2000 where member_id= ?";
-				pstmt = conn.prepareStatement(sql2);
-				pstmt.setString(1, room.getMemberId());
-				
-				int result = pstmt.executeUpdate();
-				
-				if(result == 1) {
-					System.out.println("결제 완료.");
-				} else {
-					System.out.println("결제 실패.");
-				}
+
+			while (rs.next()) {
+
+				room = new Room();
+
+				room.setRoomDate(rs.getInt("room_date"));
+				room.setRoomNumber(roomNo);
+				list.add(room);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -168,14 +163,15 @@ public class RoomDAO extends DAO {
 		}
 		return list;
 	}
-
+	
+	
 	// 예약 조회
 	public List<Room> roomInfo(String memberId) {
 		List<Room> list = new ArrayList<>();
 		Room room = null;
 		try {
 			conn();
-			String sql = "select room_number, member_name, cat_name, room_date from room where member_id = ?";
+			String sql = "select room_number, member_name, cat_name, room_date, room_state from room where member_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 
@@ -188,6 +184,7 @@ public class RoomDAO extends DAO {
 				room.setMemberName(rs.getString("member_name"));
 				room.setCatName(rs.getString("cat_name"));
 				room.setRoomDate(rs.getInt("room_date"));
+				room.setRoomState(rs.getInt("room_state"));
 				room.setMemberId(memberId);
 
 				list.add(room);

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 public class Room {
 
 //	ROOM_NUMBER NOT NULL NUMBER       
@@ -20,5 +21,5 @@ public class Room {
 	private String memberName;
 	private String catName;
 	private int roomDate;
-	
+	private int points;
 }

@@ -28,17 +28,17 @@ public class CatMemberService {
 			if (catmember.getMemberPw().equals(pw)) {
 				if (catmember.getRole().equals("0")) {
 					cmb = catmember;
-					System.out.println(" ===================");
-					System.out.println("  ※ 관리자 로그인 완료 ※ ");
-					System.out.println(" ===================");
+					System.out.println(" ===========================");
+					System.out.println("   ※ 관리자 로그인 완료 ※ ");
+					System.out.println(" ===========================");
 				} else if (catmember.getRole().equals("1")) {
 					cmb = catmember;
 					System.out.println();
-					System.out.println(" ✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 					System.out.println();
-					System.out.println("      ❦ " + catmember.getMemberName() + "님 환영합니다 ❦     ");
+					System.out.println("      ☆★ " + catmember.getMemberName() + "님 환영합니다 ★☆     ");
 					System.out.println();
-					System.out.println(" ✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜✜");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 					System.out.println();
 				}
 			} else {
@@ -71,9 +71,9 @@ public class CatMemberService {
 					doLogin();
 					break;
 				} else if (menu == 2) {
-					System.out.println("〷〷〷〷〷〷〷〷〷〷");
-					System.out.println("〷 프로그램 종료 〷");
-					System.out.println("〷〷〷〷〷〷〷〷〷〷");
+					System.out.println("※※※※※※※※※※※※");
+					System.out.println("  프로그램 종료  ");
+					System.out.println("※※※※※※※※※※※※");
 					break;
 				}
 
@@ -93,7 +93,7 @@ public class CatMemberService {
 		System.out.println();
 
 		System.out.println(" 회원 비밀번호를 입력하세요");
-		System.out.println(" PW 입력>");
+		System.out.print(" PW 입력>");
 		String pw = sc.nextLine();
 		System.out.println();
 
@@ -230,17 +230,17 @@ public class CatMemberService {
 		List<CatMember> list = CatMemberDAO.getInstance().getCatMember();
 		System.out.println();
 
-		System.out.println("                               ◆회원정보◆");
+		System.out.println("                                        ◆회원정보◆");
 		for (CatMember catmember : list) {
 			// (주인id, 주인이름, 고양이이름, 가입일)
-			System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+			System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
 			System.out.print("  ▶ ID : " + catmember.getMemberId());
 			System.out.print(" , 이름 : " + catmember.getMemberName());
 			System.out.print(" , 고양이 이름 : " + catmember.getCatName());
 			System.out.print(" , 가입일 : " + catmember.getDates());
 			System.out.print(" , 포인트 : " + catmember.getPoints());
 			System.out.println();
-			System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+			System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 			System.out.println();
 
 		}
@@ -262,7 +262,7 @@ public class CatMemberService {
 				// (id, 이름, 주소, 고양이이름, 고양이성격, 특이사항)
 				System.out.println();
 				System.out.println(
-						" ━━━━━━━━━━━━━━━━━━━━━━━━━ " + catmember.getMemberName() + "님의 정보 ━━━━━━━━━━━━━━━━━━━━━━━━━");
+						" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ " + catmember.getMemberName() + "님의 정보 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 				System.out.print("   ▶ ID: " + catmember.getMemberId());
 				System.out.print(" , 번호:" + catmember.getMemberTel());
 				System.out.print(" , 주소: " + catmember.getMemberAddr());
@@ -270,9 +270,9 @@ public class CatMemberService {
 				System.out.print("   ▶ 고양이 : " + catmember.getCatName());
 				System.out.print(" , 성격: " + catmember.getCatCharacter());
 				System.out.println();
-				System.out.print("         ※※※※※ 주의사항: " + catmember.getSpecialNote() + " ※※※※※ ");
+				System.out.print("   ※※※※※ 주의사항: " + catmember.getSpecialNote() + " ※※※※※ ");
 				System.out.println();
-				System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+				System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 				System.out.println();
 			} else {
 				System.out.println(" ※※존재하지 않는 회원 ID입니다.※※");
@@ -284,7 +284,7 @@ public class CatMemberService {
 	// 요금표 조회
 	public void showPrice() {
 		System.out.println();
-		System.out.println("┏━━━━━━━━━━━━━━━━━━━━ 요금표 ━━━━━━━━━━━━━━━━━━━━┓");
+		System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━ 요금표 ━━━━━━━━━━━━━━━━━━━━━━━━━┓");
 		System.out.println("    ▶ 1일 : 50,000원                ");
 		System.out.println("    ▶ 3일 : 120,000원              ");
 		System.out.println("    ▶ 7일 : 300,000원              ");
@@ -293,14 +293,14 @@ public class CatMemberService {
 		System.out.println("         ※※1개월은 30일입니다..※※         ");
 		System.out.println("   ※※1개월 넘어서부터는 개월수로 결제 가능합니다..※※         ");
 		System.out.println("        ※※최대 6개월까지 가능합니다.※※    ");
-		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 		System.out.println();
 	}
 	
 	
 	public void showSalePrice() {
 		System.out.println();
-		System.out.println("┏━━━━━━━━━━━ 멤버십 요금표 (20% 할인) ━━━━━━━━━━━┓");
+		System.out.println("┏━━━━━━━━━━━━━━━━ 멤버십 요금표 (20% 할인) ━━━━━━━━━━━━━━━━┓");
 		System.out.println("    ▶ 1일 : 40,000원                ");
 		System.out.println("    ▶ 3일 : 960,000원              ");
 		System.out.println("    ▶ 7일 : 240,000원              ");
@@ -309,8 +309,46 @@ public class CatMemberService {
 		System.out.println("         ※※1개월은 30일입니다..※※         ");
 		System.out.println("   ※※1개월 넘어서부터는 개월수로 결제 가능합니다..※※         ");
 		System.out.println("        ※※최대 6개월까지 가능합니다.※※    ");
-		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+		System.out.println("    ※※ 멤버십으로 결제하면 포인트 2000이 차감됩니다.※※");
+		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 		System.out.println();
 	}
-
+	
+	// 포인트 확인 (사원용)
+		public void adminPointInfo() {
+			System.out.println(" 조회할 회원의 ID를 입력하세요");
+			System.out.print(" ID 입력>");
+			String id = sc.nextLine();
+			List<CatMember> list = CatMemberDAO.getInstance().pointInfo(id);
+			for(CatMember cm : list) {
+				if(cm.getPoints() >= 2000) {
+					System.out.println(" 포인트 사용 가능합니다.");
+					System.out.print(" ▶ "+cm.getMemberId()+" , " + cm.getMemberName()+"님의 포인트는 " );
+					System.out.print(cm.getPoints() + "입니다. \n");
+					
+				} else {
+					System.out.println("      ※※※ 포인트가 부족합니다. ※※※");
+					System.out.print(" ▶ "+cm.getMemberId()+" , " + cm.getMemberName()+"님의 포인트는 " );
+					System.out.print(cm.getPoints() + "입니다. \n");
+					System.out.print("      ※※※ 포인트를 충전하세요. ※※※\n");
+				}
+			}
+			
+		}
+	
+	// 포인트 확인 (회원용)
+	public void pointInfo() {
+		
+		List<CatMember> list = CatMemberDAO.getInstance().pointInfo(CatMemberService.cmb.getMemberId());
+		for(CatMember cm : list) {
+			if(cm.getPoints() >= 2000) {
+				System.out.println(" (=^･^=) 포인트 사용 가능합니다. (=^･^=)");
+				System.out.println(" ▶ "+ cm.getMemberName()+"님의 포인트는 " + cm.getPoints() + " 입니다.");
+			} else {
+				System.out.println(" (>д<) 포인트가 부족합니다. (>д<)");
+				System.out.println("   ※ 직원에 문의하세요 ※");
+			}
+		}
+		
+	}
 }

@@ -32,9 +32,9 @@ public class ManageMent {
 					cms.registerMember();
 				} else if (menuNo == 2) {
 					// 조회
-					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-					System.out.println(" 1.회원 조회 | 2.회원 상세 조회 | 3.후기 조회");
-					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					System.out.println("    1.회원 조회 | 2.회원 상세 조회 | 3.후기 조회");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 					System.out.print("메뉴 선택>");
 
 					int menu = Integer.parseInt(sc.nextLine());
@@ -51,9 +51,9 @@ public class ManageMent {
 					}
 				} else if (menuNo == 3) {
 					// 예약하기
-					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-					System.out.println("  1.예약 하기 | 2. 예약 취소");
-					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					System.out.println("     1.예약 하기 | 2.포인트 조회 | 3. 예약 취소");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 					System.out.print("메뉴 선택>");
 
 					int menu = Integer.parseInt(sc.nextLine());
@@ -62,29 +62,20 @@ public class ManageMent {
 						// 예약 조회
 						rs.emptyRoom();
 						rs.adminBookRoom();
-						System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-						System.out.println("  1.일반결제 | 2.멤버쉽결제");
-						System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-						System.out.print("메뉴 선택>");
-						menu = Integer.parseInt(sc.nextLine());
-						if(menu == 1) {
-							// 일반 결제
-							System.out.println();
-							rs.priceInfo();
-						}else if(menu == 2) {
-							// 포인트 결제
-							System.out.println();
-							rs.salePriceInfo();
-						}
 						
 					}else if(menu == 2) {
+						cms.adminPointInfo();
+					}else if(menu==3) {
 						rs.cancelRoom();
 					}
+						
 
 				} else if (menuNo == 4) {
 					// 포인트 충전
 					CatMember catmember = new CatMember();
-
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					System.out.println("    ※ 포인트 최소 1,000, 최대 10,000까지 충전 가능 ※");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 					System.out.println();
 					System.out.println(" 회원 아이디를 입력하세요");
 					System.out.print(" ID 입력>");
@@ -110,9 +101,9 @@ public class ManageMent {
 				} else if (menuNo == 5) {
 
 					// 회원 수정 (회원수정 / 고양이 상태 수정)
-					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-					System.out.println("  1.회원 정보 수정 | 2.고양이 정보 수정 ");
-					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
+					System.out.println("     1.회원 정보 수정 | 2.고양이 정보 수정 ");
+					System.out.println(" ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 					System.out.print("메뉴 선택>");
 					int menuN = Integer.parseInt(sc.nextLine());
 
@@ -128,7 +119,8 @@ public class ManageMent {
 				} else if (menuNo == 7) {
 					cms.logout();
 				} else if (menuNo == 8) {
-					// 프로그램 종료
+					// 프로그램 종료					
+					
 					System.out.println();
 					System.out.println("〷 프로그램 종료 〷");
 					System.out.println();
@@ -138,9 +130,10 @@ public class ManageMent {
 			} else if (CatMemberService.cmb.getRole().equals("1")) {
 				if (menuNo == 1) {
 					// 요금표 조회
-					System.out.println(" ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦");
-					System.out.println(" ✦ 1. 일반 가격 | 2. 멤버십 가격 ");
-					System.out.println(" ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦");
+					System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+					System.out.println(" ┃   1.일반가격 | 2.멤버십 가격    ┃");
+					System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+					System.out.println();
 					System.out.print("메뉴 선택>");
 					int menu = Integer.parseInt(sc.nextLine());
 					if(menu == 1) {
@@ -151,24 +144,26 @@ public class ManageMent {
 					
 				} else if (menuNo == 2) {
 					// 예약 (1:예약 2:예약취소)
-					System.out.println(" ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦");
-					System.out.println(" ✦ 1.예약 하기 | 2.예약 조회 | 3.예약 취소 ✦");
-					System.out.println(" ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦");
+					System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+					System.out.println(" ┃   1.예약 하기 | 2.예약 조회 | 3.예약 취소  | 4.포인트 조회 ┃");
+					System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+					System.out.println();
 					System.out.print("메뉴 선택>");
 					int menu = Integer.parseInt(sc.nextLine());
 					if (menu == 1) {
 						rs.bookRoom();
-						rs.priceInfo();
 					} else if (menu == 2) {
 						rs.roomInfo();
 					} else if (menu == 3) {
 						rs.cancelRoom();
+					} else if(menu == 4) {
+						cms.pointInfo();
 					}
-
 				} else if (menuNo == 3) {
-					System.out.println(" ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦");
-					System.out.println(" ✦ 1.후기 등록 | 2.후기 수정 | 3.후기 삭제 ✦");
-					System.out.println(" ✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦✦");
+					System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+					System.out.println(" ┃   1.후기 등록 | 2.후기 수정 | 3.후기 삭제   ┃");
+					System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+					System.out.println();
 					System.out.print("메뉴 선택>");
 					int menu = Integer.parseInt(sc.nextLine());
 
@@ -185,7 +180,9 @@ public class ManageMent {
 				} else if (menuNo == 5) {
 					// 종료
 					System.out.println();
-					System.out.println("〷 프로그램 종료 〷");
+					System.out.println("※※※※※※※※※※※※");
+					System.out.println("  프로그램 종료  ");
+					System.out.println("※※※※※※※※※※※※");
 					System.out.println();
 					break;
 				}
@@ -200,17 +197,24 @@ public class ManageMent {
 		if (CatMemberService.cmb.getRole().equals("0")) {
 			// 직원
 			System.out.println(
-					" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+					" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
 			System.out.println("   1.회원 등록 | 2.조회하기 | 3.예약하기 | 4.포인트 충전 | 5.회원 수정 | 6.회원 삭제 | 7.로그아웃 | 8.종료 ");
 			System.out.println(
-					" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+					" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 		} else if (CatMemberService.cmb.getRole().equals("1")) {
 			// 회원
-			System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-			System.out.println(" ┃ 1.요금표 조회 | 2.예약 | 3.후기 | 4.로그아웃 | 5.종료 ┃");
-			System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+			System.out.println(" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+			System.out.println(" ┃   1.요금표 조회 | 2.예약 | 3.후기 | 4.로그아웃 | 5.종료   ┃");
+			System.out.println(" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 		}
 		System.out.print("메뉴 선택> ");
-		menuNo = Integer.parseInt(sc.nextLine());
+		
+		try {
+			menuNo = Integer.parseInt(sc.nextLine());
+		}catch(Exception e) {
+			System.out.println("  ※※※※※※※※※※※※※※※※※※※※※※※※※※");
+			System.out.println("  ※※※※※※※※ 번호를 입력하세요 ※※※※※※※");
+			System.out.println("  ※※※※※※※※※※※※※※※※※※※※※※※※※※");
+		}
 	}
 }
