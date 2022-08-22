@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
 
+import com.yedam.catMember.CatMember;
 import com.yedam.catMember.CatMemberDAO;
 import com.yedam.catMember.CatMemberService;
 
@@ -158,22 +159,29 @@ public class RoomService {
 					} else if (menu == 2) {
 						// 포인트 결제
 
-						if (CatMemberService.cmb.getPoints() >= 2000) {
-							RoomDAO.getInstance().bookRoom(room);
-							salePriceInfo();
-							CatMemberDAO.getInstance().minusPoints(CatMemberService.cmb.getMemberId());
-						} else if (CatMemberService.cmb.getPoints() < 2000) {
-							System.out.println(" ( ´•̥×•̥` ) 포인트가 부족합니다. ( ´•̥×•̥` )");
-							System.out.println("       ※ 카운터에 문의하세요 ※");
+						List<CatMember> list2 = CatMemberDAO.getInstance()
+								.pointInfo(CatMemberService.cmb.getMemberId());
+						for (CatMember cm : list2) {
+							if (cm.getPoints() >= 2000) {
+								RoomDAO.getInstance().bookRoom(room);
+								salePriceInfo();
+								CatMemberDAO.getInstance().minusPoints(CatMemberService.cmb.getMemberId());
+
+							} else {
+								System.out.println(" ( ´•̥×•̥` ) 포인트가 부족합니다. ( ´•̥×•̥` )");
+								System.out.println("       ※ 카운터에 문의하세요 ※");
+							}
 						}
+					}
+
+					else if (room.getRoomState() == 1) {
+						System.out.println();
+						System.out.println(" ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+						System.out.println(" ＊＊ " + room.getRoomNumber() + "번 방은 이미 예약된 방입니다. ＊＊");
+						System.out.println(" ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
+						System.out.println();
 
 					}
-				} else if (room.getRoomState() == 1) {
-					System.out.println();
-					System.out.println(" ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
-					System.out.println(" ＊＊ " + room.getRoomNumber() + "번 방은 이미 예약된 방입니다. ＊＊");
-					System.out.println(" ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊");
-					System.out.println();
 				}
 			}
 		}
